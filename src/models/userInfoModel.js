@@ -25,38 +25,6 @@ const userSchema = new mongoose.Schema(
           throw new Error("email is not valid");
         }
       },
-      age: {
-        type: Number,
-        min: 18,
-      },
-      gender: {
-        type: String,
-        enum: {
-          values: ["male", "female", "other"],
-          message: `{VALUE} is not a valid gender type`,
-        },
-        // validate(value) {
-        //   if (!["male", "female", "others"].includes(value)) {
-        //     throw new Error("Gender data is not valid");
-        //   }
-        // },
-      },
-      photoUrl: {
-        type: String,
-        default: "https://geographyandyou.com/images/user-profile.png",
-        validate(value) {
-          if (!validator.isURL(value)) {
-            throw new Error("Invalid Photo URL: " + value);
-          }
-        },
-      },
-      about: {
-        type: String,
-        default: "This is a default about of the user!",
-      },
-      skills: {
-        type: [String],
-      },
     },
     password: {
       type: String,
@@ -65,6 +33,38 @@ const userSchema = new mongoose.Schema(
           throw new Error("Password is not Strong");
         }
       },
+    },
+    age: {
+      type: Number,
+      min: 18,
+    },
+    gender: {
+      type: String,
+      enum: {
+        values: ["male", "female", "other"],
+        message: `{VALUE} is not a valid gender type`,
+      },
+      // validate(value) {
+      //   if (!["male", "female", "others"].includes(value)) {
+      //     throw new Error("Gender data is not valid");
+      //   }
+      // },
+    },
+    photoUrl: {
+      type: String,
+      default: "https://geographyandyou.com/images/user-profile.png",
+      validate(value) {
+        if (!validator.isURL(value)) {
+          throw new Error("Invalid Photo URL: " + value);
+        }
+      },
+    },
+    about: {
+      type: String,
+      default: "This is a default about of the user!",
+    },
+    skills: {
+      type: [String],
     },
   },
   {

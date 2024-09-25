@@ -39,6 +39,8 @@ const updateProfileInfo = asyncHandler(async (req, res) => {
       }
     );
 
+    updateUser.save();
+
     res.status(200).send(updateUser);
   } catch (error) {
     throw new Error("SomeThing Went Wrong");
@@ -63,11 +65,9 @@ const updateUserPassword = asyncHandler(async (req, res) => {
     }
 
     if (enterdPassword !== reEnteredPassword) {
-      return res
-        .status(400)
-        .send({
-          error: "enterdPassword and reEnteredPassword is not matching",
-        });
+      return res.status(400).send({
+        error: "enterdPassword and reEnteredPassword is not matching",
+      });
     }
 
     if (enterdPassword === reEnteredPassword) {
@@ -81,11 +81,9 @@ const updateUserPassword = asyncHandler(async (req, res) => {
 
       res.status(200).send("your Password has been updated successfull...!!");
     } else {
-      return res
-        .status(400)
-        .send({
-          error: "NOT UPDATED !!!",
-        });
+      return res.status(400).send({
+        error: "NOT UPDATED !!!",
+      });
     }
   } catch (error) {
     throw new Error("SomeThing Went Wrong");

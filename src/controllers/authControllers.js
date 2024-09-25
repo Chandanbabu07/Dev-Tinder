@@ -4,7 +4,17 @@ const bcrypt = require("bcrypt");
 const User = require("../models/userInfoModel");
 
 const authSignup = asyncHandler(async (req, res) => {
-  const { firstName, lastName, emailId, password } = req.body;
+  const {
+    firstName,
+    lastName,
+    emailId,
+    password,
+    age,
+    gender,
+    photoUrl,
+    about,
+    skills,
+  } = req.body;
 
   console.log("ReqestBody", req.body);
 
@@ -19,7 +29,14 @@ const authSignup = asyncHandler(async (req, res) => {
       lastName,
       emailId,
       password: hashedPassword,
+      age,
+      gender,
+      photoUrl,
+      about,
+      skills,
     });
+
+    console.log("requser", user);
 
     await user.save();
 
